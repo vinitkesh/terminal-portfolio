@@ -5,7 +5,7 @@ import TypewriterComponent from 'typewriter-effect';
 
 const TerminalMobile = () => {
   const lines = [
-    '  Hey i am',
+    '  Hey, I am',
     '  ',
     `  ██╗   ██╗██╗███╗   ██╗██╗████████╗ `,
     `  ██║   ██║██║████╗  ██║██║╚══██╔══╝ `,
@@ -13,7 +13,12 @@ const TerminalMobile = () => {
     `  ╚██╗ ██╔╝██║██║╚██╗██║██║   ██║    `,
     `   ╚████╔╝ ██║██║ ╚████║██║   ██║    `,
     `    ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝    `,
-    ' '
+    `  ██╗  ██╗███████╗███████╗██╗  ██╗██████╗ ██╗ `,
+    `  ██║ ██╔╝██╔════╝██╔════╝██║  ██║██╔══██╗██║ `,
+    `  █████╔╝ █████╗  ███████╗███████║██████╔╝██║ `,
+    `  ██╔═██╗ ██╔══╝  ╚════██║██╔══██║██╔══██╗██║ `,
+    `  ██║  ██╗███████╗███████║██║  ██║██║  ██║██║ `,
+    `  ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ `,
   ];
 
   const info = [
@@ -42,28 +47,28 @@ const TerminalMobile = () => {
       gsap.fromTo(
         `#infoCommand${i}`,
         { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i  , ease: "none" }
+        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
       );
       gsap.fromTo(
         `#infoResponse${i}`,
         {width:" 0%" },
-        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 , ease: 'none' }
+        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
       );
     });
 
     gsap.fromTo(
         `#scroll`,
         { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 0.5, ease: 'power2.out' }
+        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 1.2 + 0.5, ease: 'power2.out' }
       );
-
   }, []);
+
 
   return (
     <Draggable >
       <div
         ref={terminal}
-        className="scale-50 md:scale-100 absolute origin-center top-[20%] cursor-move sm:hidden block max-h-52 w-[95vw]"
+        className="scale-50 md:scale-100 absolute origin-center top-[15%] cursor-move sm:hidden block max-h-52 w-[95vw]"
       >
         <div className="flex flex-col bg-black bg-opacity-85 p-5 z-10 rounded-md pt-10 relative min-h-[250px] w-full">
           <div className="rounded-t-md bg-white absolute top-0 left-0 h-5 z-20 w-full ">
