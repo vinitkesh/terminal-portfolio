@@ -78,7 +78,7 @@ const TerminalMobile = () => {
             <span
               key={i}
               id={`banner${i}`}
-              className="font-mono text-white overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen"
+              className="mono-font text-white overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen"
               style={{
                 whiteSpace: 'pre',
                 lineHeight: 'normal',

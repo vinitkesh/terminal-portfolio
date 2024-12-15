@@ -12,7 +12,6 @@ const Terminal = () => {
     `  ╚██╗ ██╔╝██║██║╚██╗██║██║   ██║       ██╔═██╗ ██╔══╝  ╚════██║██╔══██║██╔══██╗██║`,
     `   ╚████╔╝ ██║██║ ╚████║██║   ██║       ██║  ██╗███████╗███████║██║  ██║██║  ██║██║`,
     `    ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝       ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝`,
-    ' '
   ];
 
   const info = [
@@ -41,12 +40,12 @@ const Terminal = () => {
       gsap.fromTo(
         `#infoCommand${i}`,
         { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i  , ease: "none" }
+        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
       );
       gsap.fromTo(
         `#infoResponse${i}`,
         {width:" 0%" },
-        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 , ease: 'none' }
+        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
       );
     });
 
@@ -77,7 +76,7 @@ const Terminal = () => {
             <span
               key={i}
               id={`banner${i}`}
-              className="font-mono text-white overflow-hidden text-left w-0 text-[10px] md:text-lg"
+              className="mono-font text-white overflow-hidden text-left w-0 text-[10px] md:text-lg"
               style={{
                 whiteSpace: 'pre',
                 lineHeight: 'normal',
@@ -96,7 +95,7 @@ const Terminal = () => {
 
                 id={`infoCommand${i}`}
                 key={`infoCommand${i}`}
-                className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
+                className="mono-font text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
                 style={{
                   whiteSpace: 'pre',
                 }}
@@ -108,7 +107,7 @@ const Terminal = () => {
               <span
                 id={`infoResponse${i}`}
                 key={`infoResponse${i}`}
-                className="font-mono text-green-500 overflow-hidden text-left w-0 text-[10px] font-bold md:text-lg"
+                className="mono-font text-green-500 overflow-hidden text-left w-0 text-[10px] font-bold md:text-lg"
                 style={{
                   whiteSpace: 'pre',
                 }}
@@ -121,7 +120,7 @@ const Terminal = () => {
 
         {/* <span
             id="scroll"
-            className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
+            className="mono-font text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
             style={{
                 whiteSpace: 'pre',
                 }}
@@ -129,7 +128,7 @@ const Terminal = () => {
             {'guest@vinitkeshri.xyz:~$ Scroll to Continue....'}
         </span> */}
 
-        <span id="scroll" className="font-mono text-green-500 overflow-hidden text-left w-0 text-[10px] md:text-lg" style={{
+        <span id="scroll" className="mono-font text-green-500 overflow-hidden text-left w-0 text-[10px] md:text-lg" style={{
                 whiteSpace: 'pre',
                 }}>
             {'>  '}

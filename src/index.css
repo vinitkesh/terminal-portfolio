@@ -17,3 +17,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.mono-font{
+    font-family: 'Cascadia Code', monospace;
+}

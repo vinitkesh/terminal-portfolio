@@ -5,7 +5,9 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      'terminal': ["Courier New", 'monospace']
+    },
   },
   plugins: [],
 }
