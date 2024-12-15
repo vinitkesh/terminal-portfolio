@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.line{
+    font-size: 12px;
+    line-height: 12px;
+}
