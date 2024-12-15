@@ -9,6 +9,7 @@
 
 .bg-img{
     background-image: url('/Lines.svg');
+    height: 100%;
     width: 100%;
     filter: blur(4px);
     -webkit-filter: blur(4px);
