@@ -60,7 +60,7 @@ const TerminalMobile = () => {
   }, []);
 
   return (
-    <Draggable>
+    <Draggable >
       <div
         ref={terminal}
         className="scale-50 md:scale-100 absolute origin-center top-[20%] cursor-move sm:hidden block max-h-52 w-[95vw]"
