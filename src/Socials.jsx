@@ -52,7 +52,7 @@ const Socials = () => {
   return (
     <Draggable cancel=".btn">
         <div ref={terminal} className="absolute origin-center md:left-0 bottom-0 md:bottom-auto cursor-move">
-          <div className=" btn flex md:flex-col flex-row bg-black bg-opacity-70 p-5 z-10 rounded-md pt-10 relative h-max w-max">
+          <div className=" flex md:flex-col flex-row bg-black bg-opacity-70 p-5 z-10 rounded-md pt-10 relative h-max w-max">
 
           <div className="rounded-t-md bg-white absolute top-0 left-0 h-5 z-20 w-full ">
               <div className="relative w-full h-full">
