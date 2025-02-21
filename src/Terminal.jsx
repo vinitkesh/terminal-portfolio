@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import gsap, { SteppedEase } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import WindowTopBar from './components/WindowTopBar';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Terminal = () => {
   const lines = [
@@ -17,7 +21,7 @@ const Terminal = () => {
   const info = [
     {
       command: 'whoami',
-      output: 'I am a passionate developer who loves to code and solve problems.',
+      output: 'I am a developer who loves to code and solve problems.',
     },
     {
       command: 'cat welcome.txt',
@@ -28,34 +32,56 @@ const Terminal = () => {
   const terminal = useRef(null);
 
   useEffect(() => {
-    lines.forEach((_, i) => {
-      gsap.fromTo(
-        `#banner${i}`,
-        { width: 0 },
-        { width: '100%', duration: 0.1, delay: i * 0.1, ease: 'power2.in' }
-      );
-    });
-
-    info.forEach((_, i) => {
-      gsap.fromTo(
-        `#infoCommand${i}`,
-        { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
-      );
-      gsap.fromTo(
-        `#infoResponse${i}`,
-        {width:" 0%" },
-        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
-      );
-    });
-
-    gsap.fromTo(
-        `#scroll`,
-        { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 1.2 + 0.5, ease: 'power2.out' }
-      );
-
+    const handleScroll = () => {
+      const scrollPercentage =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  
+      if (scrollPercentage > 20) {
+        gsap.to(terminal.current, { y: "80vh", duration: 0.5, ease: "power2.out" });
+      } else {
+        gsap.to(terminal.current, { y: "0vh", duration: 0.5, ease: "power2.out" });
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+  
+
+  // commenting this because same is applied in mobile terminal 
+  // and it cause double effect if loaded twice
+
+  // useEffect(() => {
+  //   lines.forEach((_, i) => {
+  //     gsap.fromTo(
+  //       `#banner${i}`,
+  //       { width: 0 },
+  //       { width: '100%', duration: 0.1, delay: i * 0.1, ease: 'power2.in' }
+  //     );
+  //   });
+
+  //   info.forEach((_, i) => {
+  //     gsap.fromTo(
+  //       `#infoCommand${i}`,
+  //       { width: 0 },
+  //       { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "power2.out" }
+  //     );
+  //     gsap.fromTo(
+  //       `#infoResponse${i}`,
+  //       {width:" 0%" },
+  //       {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'power2.out' }
+  //     );
+  //   });
+
+  //   gsap.fromTo(
+  //       `#scroll`,
+  //       { width: 0 },
+  //       { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 1.2 + 0.5, ease: 'power2.out' }
+  //     );
+
+  // }, []);
 
   return (
     <Draggable>
@@ -64,19 +90,12 @@ const Terminal = () => {
         className="scale-50 md:scale-100 absolute origin-center cursor-move hidden sm:block"
       >
         <div className="flex flex-col bg-black bg-opacity-85 p-5 z-10 rounded-md pt-10 relative min-h-[250px] w-max">
-          <div className="rounded-t-md bg-white absolute top-0 left-0 h-5 z-20 w-full ">
-            <div className="relative w-full h-full">
-              <div className="w-3 h-3 m-1 bg-red-500 rounded-full right-1 origin-center absolute"></div>
-              <div className="w-3 h-3 m-1 bg-blue-600 rounded-full right-5 origin-center absolute"></div>
-            </div>
-          </div>
+          <WindowTopBar />
 
           {/* Render spans for each line */}
           {lines.map((line, i) => (
             <span
-              key={i}
-              id={`banner${i}`}
-              className="mono-font text-white overflow-hidden text-left w-0 text-[10px] md:text-lg"
+              key={i} id={`banner${i}`} className="mono-font text-white overflow-hidden text-left text-[10px] md:text-lg"
               style={{
                 whiteSpace: 'pre',
                 lineHeight: 'normal',
@@ -86,16 +105,13 @@ const Terminal = () => {
             </span>
           ))}
 
-          
-
           {/* Render command and output info */}
           {info.map((item, i) => (
             <>
               <span
-
                 id={`infoCommand${i}`}
                 key={`infoCommand${i}`}
-                className="mono-font text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
+                className="mono-font text-yellow-500 overflow-hidden text-left text-[10px] md:text-lg"
                 style={{
                   whiteSpace: 'pre',
                 }}
@@ -103,11 +119,10 @@ const Terminal = () => {
                 {'guest@vinitkeshri.xyz:~$ '} {item.command}
               </span>
 
-              {/* Immediately show the response after typing the command */}
               <span
-                id={`infoResponse${i}`}
+                id={`infoResponse${i}`} 
                 key={`infoResponse${i}`}
-                className="mono-font text-green-500 overflow-hidden text-left w-0 text-[10px] font-bold md:text-lg"
+                className="mono-font text-green-500 overflow-hidden text-left text-[10px] font-bold md:text-lg"
                 style={{
                   whiteSpace: 'pre',
                 }}
@@ -117,22 +132,12 @@ const Terminal = () => {
             </>
           ))}
 
-
-        {/* <span
-            id="scroll"
-            className="mono-font text-yellow-500 overflow-hidden text-left w-0 text-[10px] md:text-lg"
-            style={{
-                whiteSpace: 'pre',
-                }}
-            >
-            {'guest@vinitkeshri.xyz:~$ Scroll to Continue....'}
-        </span> */}
-
-        <span id="scroll" className="mono-font text-green-500 overflow-hidden text-left w-0 text-[10px] md:text-lg" style={{
+        <span id="scroll" className="mono-font text-green-500 overflow-hidden text-left text-[10px] md:text-lg" style={{
                 whiteSpace: 'pre',
                 }}>
             {'>  '}
         </span>
+
         </div>
       </div>
     </Draggable>

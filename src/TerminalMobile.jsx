@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import gsap, { SteppedEase } from 'gsap';
 import TypewriterComponent from 'typewriter-effect';
+import WindowTopBar from './components/WindowTopBar';
 
 const TerminalMobile = () => {
   const lines = [
@@ -61,6 +62,22 @@ const TerminalMobile = () => {
         { width: 0 },
         { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 1.2 + 0.5, ease: 'power2.out' }
       );
+
+    const handleScroll = () => {
+      const scrollPercentage =
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+  
+      if (scrollPercentage > 20) {
+        gsap.to(terminal.current, { y: "100vh", duration: 0.5, ease: "power2.out" });
+      } else {
+        gsap.to(terminal.current, { y: "0vh", duration: 0.5, ease: "power2.out" });
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
 
@@ -71,12 +88,7 @@ const TerminalMobile = () => {
         className="scale-50 md:scale-100 absolute origin-center top-[15%] cursor-move sm:hidden block max-h-52 w-[95vw]"
       >
         <div className="flex flex-col bg-black bg-opacity-85 p-5 z-10 rounded-md pt-10 relative min-h-[250px] w-full">
-          <div className="rounded-t-md bg-white absolute top-0 left-0 h-5 z-20 w-full ">
-            <div className="relative w-full h-full">
-              <div className="w-3 h-3 m-1 bg-red-500 rounded-full right-1 origin-center absolute"></div>
-              <div className="w-3 h-3 m-1 bg-blue-600 rounded-full right-5 origin-center absolute"></div>
-            </div>
-          </div>
+          <WindowTopBar />
 
           {/* Render spans for each line */}
           {lines.map((line, i) => (
@@ -102,7 +114,7 @@ const TerminalMobile = () => {
 
                 id={`infoCommand${i}`}
                 key={`infoCommand${i}`}
-                className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen"
+                className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
                 style={{
                   whiteSpace: 'normal',
                 }}
@@ -114,7 +126,7 @@ const TerminalMobile = () => {
               <span
                 id={`infoResponse${i}`}
                 key={`infoResponse${i}`}
-                className="font-mono text-green-500 overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] font-bold md:text-lg"
+                className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] font-bold md:text-lg"
                 style={{
                   whiteSpace: 'normal',
                 }}
@@ -127,7 +139,7 @@ const TerminalMobile = () => {
 
         <span
             id="scroll"
-            className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen"
+            className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
             style={{
                 whiteSpace: 'normal',
                 }}
@@ -135,7 +147,7 @@ const TerminalMobile = () => {
             {'guest@vinitkeshri.xyz:~$ Scroll to Continue....'}
         </span>
 
-        <span id="scroll" className="font-mono text-green-500 overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen" style={{
+        <span id="scroll" className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen" style={{
                 whiteSpace: 'normal',
                 }}>
             {'>  '}

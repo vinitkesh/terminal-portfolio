@@ -7,33 +7,32 @@ import Socials from './Socials';
 import TerminalMobile from './TerminalMobile';
 import './index.css'
 import { Analytics } from "@vercel/analytics/react"
+import Topbar from './components/topbar';
+import Bottombar from './components/bottombar';
 
 function App() {
   const getCurrentTime = new Date().toLocaleTimeString();
 
 
   return (
-    <div className='w-screen h-screen relative overflow-x-clip overflow-y-scroll bg-[#A7AFD4]  '  >
-    <Analytics />
-    <div className='bg-img absolute'></div>
-    <div className="App max-h-screen min-h-screen overflow-clip flex items-center justify-center flex-col gap-0 ">
-      
+    <div className="content bg-[#A7AFD4] relative overflow-clip">
+        <div className='bg-img absolute'></div>
 
-      <div className="w-full h-6 bg-black bg-opacity-25 absolute top-0">
-        <div className="time origin-center left-[50%] absolute top-0 h-min">
-          <span className="text-white text-xs font-mono ">{getCurrentTime}</span>
+      <div className='hero w-screen max-h-screen relative overflow-x-clip  overflow-clip '  >
+        <Analytics />
+        <div className="App max-h-screen min-h-screen overflow-clip flex items-center justify-center flex-col gap-0 ">
+          <Topbar />
+          <Terminal />
+          <TerminalMobile />
+          <Socials />
+          <Bottombar />
         </div>
-      </div>
+      </div> 
+      <div className="projects h-screen w-screen">
 
-      {/* Draggable Terminal */}
-      <Terminal />
-      <TerminalMobile />
-      <Socials />
-
-      
+      </div> 
     </div>
     
-    </div>
   );
 }
 
