@@ -6,6 +6,7 @@ const ExperienceSection = ({ experience }) => (
       id="experience"
       title="Experience"
       className="w-[92vw] max-w-3xl"
+      draggable={false}
     >
       <div className="space-y-4 font-mono text-sm">
         {experience.map((e, i) => (

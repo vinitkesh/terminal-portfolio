@@ -37,6 +37,7 @@ const ContactSection = ({ contact }) => {
         id="contact"
         title="contact.me"
         className="w-[94vw] max-w-6xl bg-[#0f1117] border border-[#1e2230]"
+        draggable={false}
       >
         <div
           className="

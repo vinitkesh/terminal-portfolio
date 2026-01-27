@@ -2,7 +2,9 @@ import WindowCard from './WindowCard';
 
 const ProjectsSection = ({ projects }) => (
   <div className="projects h-screen w-screen flex items-center justify-center window-spacing text-pretty font-inter">
-  <WindowCard id="projects" title="Projects" className="min-h-[300px] w-[90vw] max-w-3xl">
+  <WindowCard 
+    id="projects" 
+    title="Projects" className="min-h-[300px] w-[90vw] max-w-3xl">
       <div className="flex flex-col gap-4 w-full">
         {projects.map((p, i) => (
           <article key={i} className="border border-gray-700 rounded p-3 bg-[#0f1115] w-full">

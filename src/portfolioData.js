@@ -149,13 +149,6 @@ export const experience = [
 
 ];
 
-export const blog = [
-  {
-    title: "Flask 101",
-    link: "#"
-  },
-  // Add more articles here
-];
 
 export const contact = {
   email: {
