@@ -26,3 +26,11 @@
 .mono-font{
     font-family: 'Cascadia Code', monospace;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+.window-spacing {
+    padding: 4rem 0;
+}

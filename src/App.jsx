@@ -1,22 +1,23 @@
-import gsap from 'gsap';
-import { useEffect, useRef } from 'react';
-import Draggable from 'react-draggable';
 import Terminal from './Terminal';
-import Display from 'seven-segment-display';
 import Socials from './Socials';
 import TerminalMobile from './TerminalMobile';
-import './index.css'
-import { Analytics } from "@vercel/analytics/react"
+import './index.css';
+import { Analytics } from "@vercel/analytics/react";
 import Topbar from './components/topbar';
 import Bottombar from './components/bottombar';
+import HeroSection from './components/HeroSection';
+import ProjectsSection from './components/ProjectsSection';
+import SkillsSection from './components/SkillsSection';
+import AboutSection from './components/AboutSection';
+import ExperienceSection from './components/ExperienceSection';
+import ResumeSection from './components/ResumeSection';
+import ContactSection from './components/ContactSection';
+import { projects, skills, experience, blog,contact } from './portfolioData';
 
 function App() {
-  const getCurrentTime = new Date().toLocaleTimeString();
-
-
   return (
     <div className="content bg-[#A7AFD4] relative overflow-clip">
-        <div className='bg-img absolute'></div>
+      <div className='bg-img absolute'></div>
 
       <div className='hero w-screen max-h-screen relative overflow-x-clip  overflow-clip '  >
         <Analytics />
@@ -28,9 +29,11 @@ function App() {
           <Bottombar />
         </div>
       </div> 
-      <div className="projects h-screen w-screen">
-
-      </div> 
+      <ExperienceSection experience={experience} />
+      <ProjectsSection projects={projects} />
+      <SkillsSection skills={skills} />
+      {/* <AboutSection /> */}
+      <ContactSection contact={contact} />
     </div>
     
   );
