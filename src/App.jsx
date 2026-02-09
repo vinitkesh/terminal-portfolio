@@ -12,7 +12,7 @@ import AboutSection from './components/AboutSection';
 import ExperienceSection from './components/ExperienceSection';
 import ResumeSection from './components/ResumeSection';
 import ContactSection from './components/ContactSection';
-import { projects, skills, experience, blog,contact } from './portfolioData';
+import { projects, skills, experience, contact } from './portfolioData';
 
 function App() {
   return (
