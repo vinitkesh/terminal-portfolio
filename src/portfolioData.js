@@ -6,6 +6,7 @@ export const projects = [
     description: "Built a full-stack CRM based  web app for Doha Industrial Engineering Services (DIES) to manage their web presence, showcase their services, and handle client inquiries effectively.",
     // reason: "",
     tech: ["NEXT.JS", "Strapi", "Three.js"],
+    hiddenSkills: ["TypeScript", "3D Model Optimization", "CDN Integration", "React", "Node.js", "Framer Motion", "SEO", "CSS", "JavaScript"],
     contribution: "Team project",
     links: {
     demo: "https://diesmain.vercel.app",
@@ -15,11 +16,12 @@ export const projects = [
     challenges: "Integrating CDN for media assets and optimizing 3D models for web."
 
   },
-{
+  {
     title: "Enrols.in (2024)",
     description: "Built a full-stack web app to manage course enrollments of educational institutions for the startup Enrols.",
     reason: "Prototyping a solution for managing course enrollments.",
     tech: ["NEXT.JS", "Django", "PostgreSQL"],
+    hiddenSkills: ["Data Modeling", "Python", "Framer Motion", "Python", "CSS", "TypeScript", "React", "Node.js", "JavaScript"],
     contribution: "Team project",
     links: {
       demo: "https://enrols.in",
@@ -32,7 +34,8 @@ export const projects = [
     title: "CSEA Website (2024)",
     description: "Built a full-stack website for the organization Computer Science and Engineering Association (CSEA) of NIT Calicut to manage events, showcase projects, and facilitate member interactions.",
     reason: "Handling real-world organizational needs.",
-    tech: ["NEXT.JS", "StrapiJS", "Framer motion"],
+    tech: ["NEXT.JS", "Strapi", "Framer motion",],
+    hiddenSkills: ["SEO", "CSS", "React", "Node.js", "TypeScript", "JavaScript"],
     contribution: "Project Lead",
     links: {
       demo: "https://assoc.cse.nitc.ac.in",
@@ -42,49 +45,55 @@ export const projects = [
     challenges: null,
     learned: null
   },
-//   {
-//     title: "Code Notes",
-//     description: "A markdown-based note-taking app for developers.",
-//     reason: "Needed a simple, code-friendly note tool.",
-//     tech: ["React", "Node.js", "MongoDB"],
-//     contribution: "Solo project",
-//     links: {
-//       demo: "#",
-//       github: "#"
-//     },
-//     image: null,
-//     challenges: "Syncing notes in real-time.",
-//     learned: "WebSocket integration, markdown parsing."
-//   },
-//   {
-//     title: "LeetHide",
-//     description: "Chrome extension that hides problem tags and difficulty to reduce bias while practicing.",
-//     reason: "Improve focus when practicing algorithms.",
-//     tech: ["TypeScript", "Chrome Extension API"],
-//     contribution: "Author",
-//     links: { demo: "#", github: "#" },
-//     image: null,
-//     challenges: "Ensuring compatibility across site updates.",
-//     learned: "Extension manifest v3, content scripts, cross-origin considerations."
-//   },
-//   {
-//     title: "Pixel Cat",
-//     description: "A playful extension that shows pixel-art cursors and subtle UI tweaks.",
-//     reason: "Experiment with delightful micro-interactions.",
-//     tech: ["JavaScript", "CSS"],
-//     contribution: "Author",
-//     links: { demo: "#", github: "#" },
-//     image: null,
-//     challenges: "Performance optimizations for animations.",
-//     learned: "Animation performance and UX considerations."
-//   },
+];
+
+export const otherProjects = [
+  {
+    title: "Code Notes",
+    description: "A markdown-based note-taking app for developers.",
+    reason: "Needed a simple, code-friendly note tool.",
+    tech: ["React", "Node.js", "MongoDB"],
+    hiddenSkills: ["JavaScript", "CSS"],
+    contribution: "Solo project",
+    links: {
+      demo: "#",
+      github: "#"
+    },
+    image: null,
+    challenges: "Syncing notes in real-time.",
+    learned: "WebSocket integration, markdown parsing."
+  },
+  {
+    title: "LeetHide",
+    description: "Chrome extension that hides problem tags and difficulty to reduce bias while practicing.",
+    reason: "Improve focus when practicing algorithms.",
+    tech: ["TypeScript", "Chrome Extension API"],
+    hiddenSkills: ["JavaScript"],
+    contribution: "Author",
+    links: { demo: "#", github: "#" },
+    image: null,
+    challenges: "Ensuring compatibility across site updates.",
+    learned: "Extension manifest v3, content scripts, cross-origin considerations."
+  },
+  {
+    title: "Pixel Cat",
+    description: "A playful extension that shows pixel-art cursors and subtle UI tweaks.",
+    reason: "Experiment with delightful micro-interactions.",
+    tech: ["JavaScript", "CSS"],
+    hiddenSkills: ["Sprite Sheets", "JavaScript", "CSS"],
+    contribution: "Author",
+    links: { demo: "#", github: "#" },
+    image: null,
+    challenges: "Performance optimizations for animations.",
+    learned: "Animation performance and UX considerations."
+  }
 ];
 
 export const skills = {
-  Languages: ["JavaScript", "Python", "C++"],
-  Frameworks: ["React", "Node.js", "Express", "Next.js"],
-  Tools: ["Git", "Docker", "PostgreSQL", "Firebase"],
-  Concepts: ["REST APIs", "Auth", "DB design", "OS basics"]
+  Languages: ["JavaScript", "Python", "C++", "Java"],
+  Frameworks: ["React", "Node.js", "Express", "NEXT.JS"],
+  Tools: ["PostgreSQL", "MongoDB", ],
+  Concepts: ["REST APIs", "Auth", "DB design"]
 };
 
 export const experience = [
@@ -101,6 +110,7 @@ export const experience = [
             "Built custom UI components for Oracle Health "
         ],
         "tech": ["React", "TypeScript", "GraphQL", "Oracle Cloud"],
+        "hiddenSkills": ["JavaScript", "CSS"],
         "type": "Internship"
      },
 
@@ -129,7 +139,7 @@ export const experience = [
         "Implemented new features to enhance user experience",
         "Coordinated with other departments for content integration"
     ],
-    "tech": ["React", "Tailwind", "Git", "Netlify"],
+    "tech": ["React", "Tailwind", "Netlify"],
     "type": "Leadership"
   },
   {
@@ -147,6 +157,23 @@ export const experience = [
     "type": "Internship"
   }
 
+];
+
+export const otherExperience = [
+  {
+    "role": "Tech Head",
+    "organization": "Literary & Debating Club, NIT Calicut",
+    "logo": "/logos/lnd.svg",
+    "duration": "Oct 2024 - Present",
+    "location": "Campus",
+    "highlights": [
+      "Led technical initiatives for club platforms",
+      "Built and maintained internal tools",
+      "Collaborated with editorial and media teams"
+    ],
+    "tech": ["React", "Tailwind", "Netlify"],
+    "type": "Leadership"
+  }
 ];
 
 
