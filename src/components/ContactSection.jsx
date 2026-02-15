@@ -113,7 +113,8 @@ const ContactSection = ({ contact }) => {
           <Tile title="SSH" icon="resume" iconSize="h-6 w-6 lg:h-7 lg:w-7">
             <span className="text-green-400">ssh vinit@portfolio.dev</span>
             <div className="text-xs text-gray-500 mt-1">someday.</div>
-          </Tile>
+            <div className="text-xs text-yellow-500 mt-1">Double Click on the Arch Linux for a surprise!</div>
+            </Tile>
         </div>
       </WindowCard>
     </div>
