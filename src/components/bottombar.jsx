@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import { useWindowManager } from "./WindowManagerContext";
+import { ArchLinuxIcon, BriefcaseIcon, CircleIcon, FolderIcon, MailIcon } from "./iconLibrary";
 
 const TAB_PRIORITY = {
   experience: 0,
@@ -17,40 +18,22 @@ const TAB_LABELS = {
 
 const TabIcon = ({ id }) => {
   if (id === "experience") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="3.5" y="7.5" width="17" height="11" rx="2" />
-        <path d="M9 7.5V5.5h6v2" />
-      </svg>
-    );
+    return <BriefcaseIcon className="h-4 w-4" />;
   }
 
   if (id === "projects") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M3.5 7.5h6l2 2h9v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" />
-      </svg>
-    );
+    return <FolderIcon className="h-4 w-4" />;
   }
 
   if (id === "contact") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="3.5" y="6.5" width="17" height="11" rx="2" />
-        <path d="m4.5 8 7.5 5 7.5-5" />
-      </svg>
-    );
+    return <MailIcon className="h-4 w-4" />;
   }
 
-  return (
-    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <circle cx="12" cy="12" r="8" />
-    </svg>
-  );
+  return <CircleIcon className="h-4 w-4" />;
 };
 
 const Bottombar = () => {
-    const { windows, isMinimized, restoreWindow } = useWindowManager();
+    const { windows, isMinimized, restoreWindow, minimizeWindow } = useWindowManager();
     const [activeWindowId, setActiveWindowId] = useState(null);
 
     const orderedWindows = useMemo(
@@ -99,28 +82,94 @@ const Bottombar = () => {
       });
     };
 
+    const allMinimized = windows.length > 0 && windows.every((item) => isMinimized(item.id));
+
+    const toggleAllWindows = () => {
+      if (allMinimized) {
+        windows.forEach((item) => restoreWindow(item.id));
+        return;
+      }
+
+      windows.forEach((item) => {
+        if (!isMinimized(item.id)) {
+          minimizeWindow(item);
+        }
+      });
+    };
+
+    const goToHero = () => {
+      const scrollHero = () => {
+        const hero = document.querySelector(".hero");
+        if (hero) {
+          hero.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      };
+
+      if (window.location.pathname !== "/") {
+        window.history.pushState({}, "", "/");
+        window.dispatchEvent(new PopStateEvent("popstate"));
+        requestAnimationFrame(scrollHero);
+        return;
+      }
+
+      scrollHero();
+    };
+
     return (
-      <div className="w-full h-11 border-t border-[#1e2230] flex items-center justify-start bg-black/55 fixed bottom-0 left-0 z-[60] backdrop-blur-sm px-2">
-        <div className="relative w-full h-full flex items-center justify-start gap-2 overflow-x-auto">
-            {orderedWindows.map((windowItem) => (
+      <div className="w-full h-11 border-t border-[#1e2230] flex items-center justify-start bg-black/55 fixed bottom-0 left-0 z-[60] backdrop-blur-sm">
+        <div className="relative w-full h-full flex items-center justify-start gap-0 overflow-x-auto">
+            <div className="relative group h-full shrink-0">
               <button
                 type="button"
-                key={windowItem.id}
-                onClick={() => handleTabClick(windowItem)}
-                title={TAB_LABELS[windowItem.id] || windowItem.title || windowItem.id}
-                aria-label={TAB_LABELS[windowItem.id] || windowItem.title || windowItem.id}
-                className={`h-8 w-8 shrink-0 rounded border flex items-center justify-center transition ${
-                  activeWindowId === windowItem.id && !isMinimized(windowItem.id)
-                    ? 'border-blue-300 bg-[#20345a] text-blue-100'
-                    : isMinimized(windowItem.id)
-                    ? 'border-[#2b3650] bg-[#111827] text-blue-200 hover:border-blue-300 hover:text-blue-100'
-                    : 'border-[#3f4d6b] bg-[#1b2436] text-white hover:border-blue-300'
-                }`}
-              >
-                <TabIcon id={windowItem.id} />
-              </button>
+                onClick={goToHero}
+              className="h-full border-r border-[#2b3650] bg-[#111827] text-blue-200 transition hover:bg-[#16203a] hover:text-blue-100 font-mono text-[11px] font-semibold px-3 flex items-center gap-1.5"
+              title="Arch Linux: Back to hero"
+              aria-label="Arch Linux: Back to hero"
+            >
+              <ArchLinuxIcon className="h-4 w-4" />
+            </button>
+              <span className="pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                Arch Linux
+              </span>
+            </div>
+            {orderedWindows.map((windowItem) => (
+              <div key={windowItem.id} className="relative group h-full shrink-0">
+                <button
+                  type="button"
+                  onClick={() => handleTabClick(windowItem)}
+                  title={TAB_LABELS[windowItem.id] || windowItem.title || windowItem.id}
+                  aria-label={TAB_LABELS[windowItem.id] || windowItem.title || windowItem.id}
+                  className={`h-full w-11 border-r flex items-center justify-center transition ${
+                    activeWindowId === windowItem.id && !isMinimized(windowItem.id)
+                      ? 'border-[#3f5b91] bg-[#20345a] text-blue-100'
+                      : isMinimized(windowItem.id)
+                      ? 'border-[#2b3650] bg-[#111827] text-blue-200 hover:bg-[#16203a] hover:text-blue-100'
+                      : 'border-[#3f4d6b] bg-[#1b2436] text-white hover:bg-[#22314f]'
+                  }`}
+                >
+                  <TabIcon id={windowItem.id} />
+                </button>
+                <span className="pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {TAB_LABELS[windowItem.id] || windowItem.title || windowItem.id}
+                </span>
+              </div>
             ))}
-            <div className="ml-auto w-10 h-full border-l border-[#1e2230] bg-black/30" />
+            <div className="relative group h-full shrink-0 ml-auto">
+              <button
+                type="button"
+                onClick={toggleAllWindows}
+                className="h-full w-12 border-l border-[#2b3650] bg-[#111827] text-blue-200 transition hover:bg-[#16203a] hover:text-blue-100"
+                title={allMinimized ? "Maximize all windows" : "Minimize all windows"}
+                aria-label={allMinimized ? "Maximize all windows" : "Minimize all windows"}
+              >
+                {allMinimized ? "[]" : "_"}
+              </button>
+              <span className="pointer-events-none absolute bottom-full mb-1 right-0 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {allMinimized ? "Maximize all" : "Minimize all"}
+              </span>
+            </div>
         </div>
       </div>
     )

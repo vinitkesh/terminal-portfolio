@@ -121,7 +121,7 @@ const ExplorerSection = ({
                 id={section.id}
                 draggable={false}
                 title={`${section.title}\\`}
-                className="w-full border border-[#1b2033] bg-[#0d1119]/95"
+                className="w-full"
               >
                 <div className="mb-4 text-xs text-gray-500">{section.subtitle}</div>
 
@@ -319,11 +319,10 @@ const ExplorerSection = ({
       </div>
 
       <aside
-        className={`fixed right-4 top-1/2 z-30 w-60 -translate-y-1/2 transition-opacity duration-500 ${
-          showSidebar ? 'hidden lg:block' : 'hidden'
+        className={`fixed right-4 top-1/2 z-30 hidden w-60 -translate-y-1/2 lg:block transition-all duration-500 ${
+          showSidebar ? 'translate-x-0 opacity-100' : 'translate-x-3 opacity-0'
         }`}
         style={{
-          opacity: showSidebar ? 1 : 0,
           pointerEvents: showSidebar ? 'auto' : 'none',
         }}
       >
