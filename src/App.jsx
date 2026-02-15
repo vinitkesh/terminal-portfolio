@@ -54,6 +54,7 @@ function App() {
           search={route.search}
           onNavigate={navigate}
         />
+        <Bottombar />
       </div>
     );
   }
@@ -69,7 +70,6 @@ function App() {
           <Terminal />
           <TerminalMobile />
           <Socials />
-          <Bottombar />
         </div>
       </div> 
       <ExplorerSection
@@ -80,6 +80,7 @@ function App() {
         onNavigate={navigate}
       />
       <ContactSection contact={contact} />
+      <Bottombar />
     </div>
     
   );

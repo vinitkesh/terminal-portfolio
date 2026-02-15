@@ -118,6 +118,7 @@ const ExplorerSection = ({
               viewport={{ amount: 0.22, margin: '-8% 0px -12% 0px' }}
             >
               <WindowCard
+                id={section.id}
                 draggable={false}
                 title={`${section.title}\\`}
                 className="w-full border border-[#1b2033] bg-[#0d1119]/95"

@@ -45,6 +45,7 @@ const SkillsPage = ({ projects = [], experiences = [], skills = {}, search = '',
     <section className="relative min-h-screen w-screen px-4 pb-16 pt-10 lg:px-8">
       <div className="mx-auto w-full max-w-6xl">
         <WindowCard
+          id="skills-tree"
           draggable={false}
           title="skills.tree"
           className="w-full border border-[#1b2033] bg-[#0d1119]/95"
@@ -74,20 +75,28 @@ const SkillsPage = ({ projects = [], experiences = [], skills = {}, search = '',
             >
               all skills
             </button>
-            {allSkills.map((skill) => (
-              <button
-                type="button"
-                key={skill}
-                onClick={() => goTo(`/skills?skill=${encodeURIComponent(skill)}`)}
-                className={`rounded border px-2 py-1 text-xs transition ${
-                  selectedSkill === skill
-                    ? 'border-blue-300 bg-[#172744] text-blue-100'
-                    : 'border-[#22314f] bg-[#111b31] text-blue-200 hover:border-blue-300'
-                }`}
-              >
-                {skill}
-              </button>
-            ))}
+            {allSkills.map((skill) => {
+              const linked = skillsToLinks[skill] || { projects: [], experiences: [] };
+              const instanceCount = linked.projects.length + linked.experiences.length;
+
+              return (
+                <button
+                  type="button"
+                  key={skill}
+                  onClick={() => goTo(`/skills?skill=${encodeURIComponent(skill)}`)}
+                  className={`rounded border px-2 py-1 text-xs transition ${
+                    selectedSkill === skill
+                      ? 'border-blue-300 bg-[#172744] text-blue-100'
+                      : 'border-[#22314f] bg-[#111b31] text-blue-200 hover:border-blue-300'
+                  }`}
+                >
+                  <span>{skill}</span>
+                  {/* <span className="ml-1 rounded border border-[#2b3e62] bg-[#13213d] px-1 py-[1px] text-[10px] text-blue-200"> */}
+                    <span className='font-bold text-blue-500'>{" " +instanceCount } </span>
+                  {/* </span> */}
+                </button>
+              );
+            })}
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[280px_1fr]">
@@ -126,39 +135,47 @@ const SkillsPage = ({ projects = [], experiences = [], skills = {}, search = '',
                   const linked = skillsToLinks[skill] || { projects: [], experiences: [] };
                   const linkedProjects = linked.projects;
                   const linkedExperiences = linked.experiences;
+                  const instanceCount = linkedProjects.length + linkedExperiences.length;
 
                   return (
                     <div key={skill} className="rounded border border-[#1b253a] bg-[#0c1424] p-3">
-                      <div className="text-sm font-semibold text-blue-300">{skill}</div>
+                      <div className="flex items-center gap-2 text-sm font-semibold text-blue-300">
+                        <span>{skill}</span>
+                        <span className="rounded border border-[#2b3e62] bg-[#13213d] px-2 py-[1px] text-[10px] text-blue-200">
+                          {instanceCount}
+                        </span>
+                      </div>
 
                       <ul className="mt-3 border-l border-[#243148] pl-4">
                         {linkedProjects.length === 0 && linkedExperiences.length === 0 && (
-                          <li className="relative mb-2 pl-3 text-xs text-gray-500 before:absolute before:left-[-17px] before:top-[8px] before:h-px before:w-3 before:bg-[#243148]">
+                          <li className="relative mb-2 pl-3 text-xs text-gray-500 before:absolute before:left-[-17px] before:top-[9px] before:h-px before:w-4 before:bg-[#243148]">
                             no linked project/experience yet
                           </li>
                         )}
 
-                        {linkedProjects.map((project) => (
-                          <li
-                            key={project.title}
-                            className="relative mb-2 flex items-center gap-2 pl-3 text-sm text-gray-200 before:absolute before:left-[-17px] before:top-[10px] before:h-px before:w-3 before:bg-[#243148]"
-                          >
-                            <span className="rounded border border-[#2c3f64] bg-[#12213d] px-2 py-[2px] text-[10px] uppercase tracking-wide text-blue-200">
-                              project
-                            </span>
-                            <span>{project.title}</span>
-                          </li>
-                        ))}
+                        
 
                         {linkedExperiences.map((item) => (
                           <li
                             key={`${item.role}-${item.organization}`}
-                            className="relative mb-2 flex items-center gap-2 pl-3 text-sm text-gray-200 before:absolute before:left-[-17px] before:top-[10px] before:h-px before:w-3 before:bg-[#243148]"
+                            className="relative mb-2 flex items-center gap-2 text-sm text-gray-200 before:absolute before:left-[-17px] before:top-[10px] before:h-px before:w-3 before:bg-[#243148]"
                           >
                             <span className="rounded border border-[#30503e] bg-[#122b20] px-2 py-[2px] text-[10px] uppercase tracking-wide text-emerald-200">
                               experience
                             </span>
                             <span>{item.role} - {item.organization}</span>
+                          </li>
+                        ))}
+
+                        {linkedProjects.map((project) => (
+                          <li
+                            key={project.title}
+                            className="relative mb-2 flex items-center gap-2 text-sm text-gray-200 before:absolute before:left-[-17px] before:top-[10px] before:h-px before:w-3 before:bg-[#243148]"
+                          >
+                            <span className="rounded border border-[#62642c] bg-[#3c3d12] px-2 py-[2px] text-[10px] uppercase tracking-wide text-yellow-200">
+                              project
+                            </span>
+                            <span>{project.title}</span>
                           </li>
                         ))}
                       </ul>
