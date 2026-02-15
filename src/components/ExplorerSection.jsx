@@ -319,7 +319,7 @@ const ExplorerSection = ({
       </div>
 
       <aside
-        className={`fixed right-4 top-1/2 z-30 hidden w-60 -translate-y-1/2 lg:block transition-all duration-500 ${
+        className={`fixed right-4 top-1/2 z-30 hidden w-60 -translate-y-1/2 lg:block transition-all duration-500 mono-font ${
           showSidebar ? 'translate-x-0 opacity-100' : 'translate-x-3 opacity-0'
         }`}
         style={{
@@ -327,7 +327,7 @@ const ExplorerSection = ({
         }}
       >
         <div className="rounded-md border border-[#1b2033] bg-[#090d15]/95 p-4 font-mono text-xs text-gray-300 shadow-lg backdrop-blur">
-          <div className="mb-3 text-[11px] uppercase tracking-widest text-gray-500">Explorer</div>
+          <div className="mb-3 text-[13px] uppercase tracking-widest text-gray-500">Explorer</div>
 
           <div className="space-y-1">
             {sections.map((section) => (
@@ -340,8 +340,8 @@ const ExplorerSection = ({
                     : 'hover:bg-[#101726]'
                 }`}
               >
-                {activeSectionData?.id === section.id ? '> ' : ''}
-                {section.title}
+                {/* {activeSectionData?.id === section.id ? '> ' : ''} */}
+                ./{section.title}
               </button>
             ))}
           </div>

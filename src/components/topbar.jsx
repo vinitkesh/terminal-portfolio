@@ -69,17 +69,26 @@ const Topbar = () => {
     };
   }, []);
 
+  const timezoneLabel = useMemo(() => {
+    const offsetMinutes = -clock.getTimezoneOffset();
+    const sign = offsetMinutes >= 0 ? '+' : '-';
+    const abs = Math.abs(offsetMinutes);
+    const hh = String(Math.floor(abs / 60)).padStart(2, '0');
+    const mm = String(abs % 60).padStart(2, '0');
+    return `(UTC${sign}${hh}:${mm})`;
+  }, [clock]);
+
   return (
     <div className="w-full fixed top-0 left-0 z-[70] px-3 py-1.5 border-b border-[#20283c] bg-gradient-to-b from-[#121725]/85 to-[#0d1220]/85 backdrop-blur-sm mono-font">
-      <div className="font-mono text-[10px] text-white/90 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
+      <div className="font-mono text-[12px] text-white/90 flex flex-wrap items-center justify-between gap-x-2 gap-y-1">
         <div className="flex items-center gap-1.5">
-          <span className="ml-1 hidden sm:inline text-white/60">Vinit Keshri</span>
+          <span className="ml-0 md:ml-1 text-white/60">./Vinit_Keshri</span>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          <span className="rounded border border-[#2a3654] bg-[#121a30] px-2 py-[2px] text-blue-200">
-            {clock.toLocaleTimeString()}
-          </span>
+        <div className="hidden md:block flex-1 h-px bg-white/15 mx-3" />
+
+        <div className="flex items-center gap-1">
+          
           <span className="hidden md:inline rounded border border-[#2a3654] bg-[#121a30] px-2 py-[2px] text-white/90">
             {machine.browser} | {machine.os} | {machine.device}
           </span>
@@ -90,10 +99,13 @@ const Topbar = () => {
             {machine.shell} | pkgs {machine.packages} | up {machine.uptime}
           </span>
           <span className="hidden lg:inline rounded border border-[#4a2f2f] bg-[#2b1616] px-2 py-[2px] text-red-200">
-            cpu {usage.cpu}%
+            CPU {usage.cpu}%
           </span>
           <span className="hidden lg:inline rounded border border-[#2f3a4f] bg-[#131d2f] px-2 py-[2px] text-cyan-200">
-            ram {usage.ram}%
+            RAM {usage.ram}%
+          </span>
+          <span className="rounded px-2 py-[2px] text-blue-200">
+            {timezoneLabel} | {clock.toLocaleTimeString()} 
           </span>
         </div>
 

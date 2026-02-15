@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useMemo, useState } from "react";
 import { useWindowManager } from "./WindowManagerContext";
-import { ArchLinuxIcon, BriefcaseIcon, CircleIcon, FolderIcon, MailIcon } from "./iconLibrary";
+import { FiBriefcase, FiCircle, FiFolder, FiMail, FiMinimize2, FiMaximize2 } from "react-icons/fi";
+import { SiArchlinux } from "react-icons/si";
 
 const TAB_PRIORITY = {
   experience: 0,
@@ -18,18 +19,18 @@ const TAB_LABELS = {
 
 const TabIcon = ({ id }) => {
   if (id === "experience") {
-    return <BriefcaseIcon className="h-4 w-4" />;
+    return <FiBriefcase className="h-4 w-4" />;
   }
 
   if (id === "projects") {
-    return <FolderIcon className="h-4 w-4" />;
+    return <FiFolder className="h-4 w-4" />;
   }
 
   if (id === "contact") {
-    return <MailIcon className="h-4 w-4" />;
+    return <FiMail className="h-4 w-4" />;
   }
 
-  return <CircleIcon className="h-4 w-4" />;
+  return <FiCircle className="h-4 w-4" />;
 };
 
 const Bottombar = () => {
@@ -127,16 +128,16 @@ const Bottombar = () => {
 
     return (
       <div className="w-full h-11 border-t border-[#1e2230] flex items-center justify-start bg-black/55 fixed bottom-0 left-0 z-[60] backdrop-blur-sm">
-        <div className="relative w-full h-full flex items-center justify-start gap-0 overflow-x-auto">
+        <div className="relative w-full h-full flex items-center justify-start gap-0 overflow-x-auto overflow-y-clip">
             <div className="relative group h-full shrink-0">
               <button
                 type="button"
                 onClick={handleArchClick}
-                className="h-full border-r border-[#2b3650] bg-[#111827] text-blue-200 transition hover:bg-[#16203a] hover:text-blue-100 font-mono text-[11px] font-semibold px-3 flex items-center gap-1.5"
-                title="Arch Linux: Back to hero"
-                aria-label="Arch Linux: Back to hero"
+              className="h-full border-r border-[#2b3650] bg-[#111827] text-blue-200 transition hover:bg-[#16203a] hover:text-blue-100 font-mono text-[11px] font-semibold px-3 flex items-center gap-1.5"
+              title="Arch Linux: Back to hero"
+              aria-label="Arch Linux: Back to hero"
             >
-              <ArchLinuxIcon className="h-4 w-4" />
+              <SiArchlinux className="h-4 w-4" />
             </button>
               <span className="pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Arch Linux
@@ -172,7 +173,7 @@ const Bottombar = () => {
                 title={allMinimized ? "Maximize all windows" : "Minimize all windows"}
                 aria-label={allMinimized ? "Maximize all windows" : "Minimize all windows"}
               >
-                {allMinimized ? "[]" : "_"}
+                {allMinimized ? <FiMaximize2 className="mx-auto h-4 w-4" /> : <FiMinimize2 className="mx-auto h-4 w-4" />}
               </button>
               <span className="pointer-events-none absolute bottom-full mb-1 right-0 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {allMinimized ? "Maximize all" : "Minimize all"}
