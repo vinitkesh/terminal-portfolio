@@ -2,36 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import gsap, { SteppedEase } from 'gsap';
 import TypewriterComponent from 'typewriter-effect';
-import WindowTopBar from './components/WindowTopBar';
-
+import WindowTopBar from '../WindowTopBar';
+import {lines, info} from './terminal';
 const TerminalMobile = () => {
-  const lines = [
-    '  Hey, I am',
-    '  ',
-    `  ██╗   ██╗██╗███╗   ██╗██╗████████╗ `,
-    `  ██║   ██║██║████╗  ██║██║╚══██╔══╝ `,
-    `  ██║   ██║██║██╔██╗ ██║██║   ██║    `,
-    `  ╚██╗ ██╔╝██║██║╚██╗██║██║   ██║    `,
-    `   ╚████╔╝ ██║██║ ╚████║██║   ██║    `,
-    `    ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝    `,
-    `  ██╗  ██╗███████╗███████╗██╗  ██╗██████╗ ██╗ `,
-    `  ██║ ██╔╝██╔════╝██╔════╝██║  ██║██╔══██╗██║ `,
-    `  █████╔╝ █████╗  ███████╗███████║██████╔╝██║ `,
-    `  ██╔═██╗ ██╔══╝  ╚════██║██╔══██║██╔══██╗██║ `,
-    `  ██║  ██╗███████╗███████║██║  ██║██║  ██║██║ `,
-    `  ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ `,
-  ];
-
-  const info = [
-    {
-      command: 'whoami',
-      output: 'I am a passionate developer who loves to code and solve problems.',
-    },
-    {
-      command: 'cat welcome.txt',
-      output: 'Welcome to my part of the internet. Feel free to explore.',
-    },
-  ];
 
   const terminal = useRef(null);
 
@@ -48,12 +21,12 @@ const TerminalMobile = () => {
       gsap.fromTo(
         `#infoCommand${i}`,
         { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
+        { width: '100%', duration: 0.5, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
       );
       gsap.fromTo(
         `#infoResponse${i}`,
         {width:" 0%" },
-        {width:"100%" , duration: 1, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
+        {width:"100%" , duration: 0.5, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
       );
     });
 
@@ -114,12 +87,12 @@ const TerminalMobile = () => {
 
                 id={`infoCommand${i}`}
                 key={`infoCommand${i}`}
-                className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
+                className="font-mono font-extralight text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
                 style={{
                   whiteSpace: 'normal',
                 }}
               >
-                {'guest@vinitkeshri.xyz:~$ '} {item.command}
+                {'~$'} {item.command}
               </span>
 
               {/* Immediately show the response after typing the command */}
@@ -144,7 +117,7 @@ const TerminalMobile = () => {
                 whiteSpace: 'normal',
                 }}
             >
-            {'guest@vinitkeshri.xyz:~$ Scroll to Continue....'}
+            {'~$Scroll to Continue....'}
         </span>
 
         <span id="scroll" className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen" style={{

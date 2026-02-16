@@ -2,33 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import gsap, { SteppedEase } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import WindowTopBar from './components/WindowTopBar';
+import WindowTopBar from '../WindowTopBar';
+import {lines, info} from './terminal';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Terminal = () => {
-  const lines = [
-    '  Hey, I am',
-    '  ',
-    `  ██╗   ██╗██╗███╗   ██╗██╗████████╗    ██╗  ██╗███████╗███████╗██╗  ██╗██████╗ ██╗`,
-    `  ██║   ██║██║████╗  ██║██║╚══██╔══╝    ██║ ██╔╝██╔════╝██╔════╝██║  ██║██╔══██╗██║`,
-    `  ██║   ██║██║██╔██╗ ██║██║   ██║       █████╔╝ █████╗  ███████╗███████║██████╔╝██║`,
-    `  ╚██╗ ██╔╝██║██║╚██╗██║██║   ██║       ██╔═██╗ ██╔══╝  ╚════██║██╔══██║██╔══██╗██║`,
-    `   ╚████╔╝ ██║██║ ╚████║██║   ██║       ██║  ██╗███████╗███████║██║  ██║██║  ██║██║`,
-    `    ╚═══╝  ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝       ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝`,
-  ];
-
-  const info = [
-    {
-      command: 'whoami',
-      output: 'I am a developer who loves to code and solve problems.',
-    },
-    {
-      command: 'cat welcome.txt',
-      output: 'Welcome to my part of the internet. Feel free to explore.',
-    },
-  ];
-
   const terminal = useRef(null);
 
   useEffect(() => {
@@ -116,7 +95,7 @@ const Terminal = () => {
                   whiteSpace: 'pre',
                 }}
               >
-                {'guest@vinitkeshri.xyz:~$ '} {item.command}
+                {'~$'} {item.command}
               </span>
 
               <span

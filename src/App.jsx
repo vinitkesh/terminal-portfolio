@@ -1,6 +1,6 @@
-import Terminal from './Terminal';
+import Terminal from './components/hero/Terminal';
 import Socials from './Socials';
-import TerminalMobile from './TerminalMobile';
+import TerminalMobile from './components/hero/TerminalMobile';
 import { useCallback, useEffect, useState } from 'react';
 import './index.css';
 import { Analytics } from "@vercel/analytics/react";
