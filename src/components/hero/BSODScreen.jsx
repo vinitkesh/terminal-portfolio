@@ -1,4 +1,23 @@
+import { time } from "motion";
+
 const BSODScreen = () => {
+
+  // on click 5 times, attempt recovery by showing alert and then removing the brick key from localStorage
+  let clickCount = 0;
+
+  const handleRecoverClick = () => {
+    clickCount += 1;
+    if (clickCount >= 5) {
+      alert('Recovery attempt initiated. Please wait...');
+      setTimeout(() => {
+        alert('Recovery attempt completed. Refreshing the page.');
+        localStorage.removeItem('terminal_portfolio_bsod');
+        window.location.reload();
+      }, 3000);
+      clickCount = 0;
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[99999] bg-[#0a2fd6] text-white px-6 py-8 md:px-16 md:py-14 mono-font">
       <div className="max-w-5xl">
@@ -24,6 +43,13 @@ const BSODScreen = () => {
             <p className="text-xs md:text-base opacity-80 mt-2">
               Persistent lock is enabled.
             </p>
+
+            <p>Press this magic button 5 times to attempt a recovery.</p>
+            <button className="mt-4 px-4 py-2 active:bg-gray-300 bg-white text-[#0a2fd6] font-bold rounded hover:bg-gray-200 transition"
+            onClick={handleRecoverClick}
+            >
+              RECOVER
+            </button>
           </div>
         </div>
       </div>
