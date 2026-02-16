@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import WindowCard from "./WindowCard";
 import {
   FiGithub,
@@ -23,13 +24,17 @@ const ICON_MAP = {
 };
 
 const ContactSection = ({ contact }) => {
-  const Tile = ({ title, icon, children, href, className = "", iconSize = "h-7 w-7 lg:h-9 lg:w-9" }) => {
-    const Comp = href ? "a" : "div";
+  const [showNyan, setShowNyan] = useState(true);
+
+  const Tile = ({ title, icon, children, href, onClick, className = "", iconSize = "h-7 w-7 lg:h-9 lg:w-9" }) => {
+    const Comp = href ? "a" : onClick ? "button" : "div";
     const IconComp = ICON_MAP[icon];
 
     return (
       <Comp
         href={href}
+        type={Comp === "button" ? "button" : undefined}
+        onClick={onClick}
         target={href ? "_blank" : undefined}
         rel="noreferrer"
         className={[
@@ -114,7 +119,22 @@ const ContactSection = ({ contact }) => {
             <span className="text-green-400">ssh vinit@portfolio.dev</span>
             <div className="text-xs text-gray-500 mt-1">someday.</div>
             <div className="text-xs text-yellow-500 mt-1">Double Click on the Arch Linux for a surprise!</div>
-            </Tile>
+          </Tile>
+
+          <Tile
+            title={"Click ?"}
+            onClick={() => setShowNyan((prev) => !prev)}
+            className="sm:col-span-2 lg:col-span-2 lg:col-start-3 min-h-[132px]"
+          >
+            <div className="rounded-lg flex items-center justify-center overflow-hidden bg-black border border-white/10">
+              <img
+                src={showNyan ? "/neon-cat-cute.gif" : "/oiiai-cat-spinning-cat.gif"}
+                alt={showNyan ? "Nyan cat" : "Spinning cat"}
+                className="w-max h-[120px] object-cover"
+                loading="lazy"
+              />
+            </div>
+          </Tile>
         </div>
       </WindowCard>
     </div>
