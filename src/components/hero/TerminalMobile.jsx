@@ -1,74 +1,80 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import Draggable from 'react-draggable';
-import gsap, { SteppedEase } from 'gsap';
+import gsap from 'gsap';
 import TypewriterComponent from 'typewriter-effect';
 import WindowTopBar from '../WindowTopBar';
-import {lines, info} from './terminal';
-const TerminalMobile = () => {
+import { mobileLines, info } from './terminal';
 
+const TerminalMobile = () => {
   const terminal = useRef(null);
+  const showBoot = true;
+  const prompt = useMemo(() => '~$', []);
 
   useEffect(() => {
-    lines.forEach((_, i) => {
-      gsap.fromTo(
-        `#banner${i}`,
-        { width: 0 },
-        { width: '100%', duration: 0.1, delay: i * 0.1, ease: 'power2.in' }
-      );
-    });
+    const node = terminal.current;
+    if (!node) return undefined;
 
-    info.forEach((_, i) => {
-      gsap.fromTo(
-        `#infoCommand${i}`,
-        { width: 0 },
-        { width: '100%', duration: 0.5, delay: lines.length * 0.2 + 2.4*i + 1  , ease: "none" }
-      );
-      gsap.fromTo(
-        `#infoResponse${i}`,
-        {width:" 0%" },
-        {width:"100%" , duration: 0.5, delay: lines.length * 0.2 + 2.4*i + 1.2 + 1 , ease: 'none' }
-      );
-    });
+    const ctx = gsap.context(() => {
+      mobileLines.forEach((_, i) => {
+        gsap.fromTo(
+          `.banner-mobile-${i}`,
+          { width: 0 },
+          { width: '100%', duration: 0.1, delay: i * 0.1, ease: 'power2.in' }
+        );
+      });
 
-    gsap.fromTo(
-        `#scroll`,
+      info.forEach((_, i) => {
+        gsap.fromTo(
+          `.info-command-mobile-${i}`,
+          { width: 0 },
+          { width: '100%', duration: 0.45, delay: mobileLines.length * 0.2 + 0.4 * i + 0.8, ease: 'power1.out' }
+        );
+        gsap.fromTo(
+          `.info-response-mobile-${i}`,
+          { width: 0 },
+          { width: '100%', duration: 0.45, delay: mobileLines.length * 0.2 + 0.4 * i + 1.2, ease: 'power1.out' }
+        );
+      });
+
+      gsap.fromTo(
+        '.scroll-hint-mobile',
         { width: 0 },
-        { width: '100%', duration: 1, delay: lines.length * 0.2 + 2.4*info.length + 1.2 + 0.5, ease: 'power2.out' }
+        { width: '100%', duration: 0.8, delay: mobileLines.length * 0.2 + 0.4 * info.length + 1.2, ease: 'power2.out' }
       );
+    }, node);
 
     const handleScroll = () => {
       const scrollPercentage =
         (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  
+
       if (scrollPercentage > 20) {
-        gsap.to(terminal.current, { y: "100vh", duration: 0.5, ease: "power2.out" });
+        gsap.to(node, { y: '100vh', duration: 0.5, ease: 'power2.out' });
       } else {
-        gsap.to(terminal.current, { y: "0vh", duration: 0.5, ease: "power2.out" });
+        gsap.to(node, { y: '0vh', duration: 0.5, ease: 'power2.out' });
       }
     };
-  
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener('scroll', handleScroll);
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
+      ctx.revert();
     };
   }, []);
 
-
   return (
-    <Draggable >
+    <Draggable>
       <div
         ref={terminal}
-        className="scale-50 md:scale-100 absolute origin-center top-[15%] cursor-move sm:hidden block max-h-52 w-[95vw]"
+        className="scale-50 md:scale-100 absolute origin-center top-[15%] cursor-move sm:hidden block max-h-52 w-[95vw] z-20"
       >
         <div className="flex flex-col bg-black bg-opacity-85 p-5 z-10 rounded-md pt-10 relative min-h-[250px] w-full">
           <WindowTopBar />
 
-          {/* Render spans for each line */}
-          {lines.map((line, i) => (
+          {mobileLines.map((line, i) => (
             <span
               key={i}
-              id={`banner${i}`}
-              className="mono-font text-white overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen"
+              className={`mono-font text-white overflow-hidden text-left w-0 text-[10px] min-h-[10px] max-h-[30px] md:text-lg text-wrap max-w-screen banner-mobile-${i}`}
               style={{
                 whiteSpace: 'pre',
                 lineHeight: 'normal',
@@ -78,53 +84,51 @@ const TerminalMobile = () => {
             </span>
           ))}
 
-          
-
-          {/* Render command and output info */}
-          {info.map((item, i) => (
-            <>
+          {showBoot && info.map((item, i) => (
+            <div key={`boot-mobile-${i}`}>
               <span
-
-                id={`infoCommand${i}`}
-                key={`infoCommand${i}`}
-                className="font-mono font-extralight text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
+                className={`font-mono block font-extralight text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen info-command-mobile-${i}`}
                 style={{
                   whiteSpace: 'normal',
                 }}
               >
-                {'~$'} {item.command}
+                {prompt} {item.command}
               </span>
 
-              {/* Immediately show the response after typing the command */}
               <span
-                id={`infoResponse${i}`}
-                key={`infoResponse${i}`}
-                className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] font-bold md:text-lg"
+                className={`font-mono block text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] font-bold md:text-lg info-response-mobile-${i}`}
                 style={{
                   whiteSpace: 'normal',
                 }}
               >
-                {'>  '}{item.output}
+                <TypewriterComponent
+                  key={`boot-output-mobile-${i}`}
+                  options={{ delay: 10, cursor: '' }}
+                  onInit={(tw) => {
+                    tw.typeString('>  ' + item.output).start();
+                  }}
+                />
               </span>
-            </>
+            </div>
           ))}
 
-
-        <span
-            id="scroll"
-            className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen"
+          <span
+            className="font-mono text-yellow-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen scroll-hint-mobile"
             style={{
-                whiteSpace: 'normal',
-                }}
-            >
-            {'~$Scroll to Continue....'}
-        </span>
+              whiteSpace: 'normal',
+            }}
+          >
+            {/* {'~$Mobile terminal is view-only'} */}
+          </span>
 
-        <span id="scroll" className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen" style={{
-                whiteSpace: 'normal',
-                }}>
+          <span
+            className="font-mono text-green-500 overflow-hidden text-left w-0 text-[14px] min-h-[10px] max-h-[42px] md:text-lg text-wrap max-w-screen scroll-hint-mobile"
+            style={{
+              whiteSpace: 'normal',
+            }}
+          >
             {'>  '}
-        </span>
+          </span>
         </div>
       </div>
     </Draggable>
@@ -132,4 +136,3 @@ const TerminalMobile = () => {
 };
 
 export default TerminalMobile;
-

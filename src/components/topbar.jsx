@@ -109,9 +109,6 @@ const Topbar = () => {
           </span>
         </div>
 
-        <span className="hidden 2xl:inline rounded border border-[#2a3654] bg-[#121a30] px-2 py-[2px] text-cyan-200">
-          svcs {machine.services}
-        </span>
       </div>
     </div>
   );
