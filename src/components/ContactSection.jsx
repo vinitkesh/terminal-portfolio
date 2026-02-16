@@ -24,7 +24,37 @@ const ICON_MAP = {
 };
 
 const ContactSection = ({ contact }) => {
-  const [showNyan, setShowNyan] = useState(true);
+  const [car, setCar] = useState(0);
+
+  const cats = [
+    {
+      id: 0,
+      src: "/neon-cat-cute.gif",
+      alt: "Nyan cat",
+    },
+    {
+      id: 1,
+      src: "/oiiai-cat-spinning-cat.gif",
+      alt: "Spinning cat",
+    },
+    {
+      id: 2,
+      src: "/khóc.gif",
+      alt: "DJ cat",
+    },
+    {
+      id: 3,
+      src: "/tongue-stick-cat.gif",
+      alt: "Tongue stick cat",
+    },
+    {
+      id: 4,
+      src: "/pop-cat.gif",
+      alt: "Pop cat",
+    }
+
+
+  ];
 
   const Tile = ({ title, icon, children, href, onClick, className = "", iconSize = "h-7 w-7 lg:h-9 lg:w-9" }) => {
     const Comp = href ? "a" : onClick ? "button" : "div";
@@ -40,7 +70,7 @@ const ContactSection = ({ contact }) => {
         className={[
           "group relative overflow-hidden rounded-xl border border-[#1c2030]",
           "bg-gradient-to-b from-[#0f1320] to-[#0b0f18] p-4",
-          "transition hover:border-blue-400/45 hover:-translate-y-[1px]",
+          "transition hover:border-blue-400/45 hover:-translate-y-1",
           "focus:outline-none focus:border-blue-400",
           className,
         ].join(" ")}
@@ -89,6 +119,21 @@ const ContactSection = ({ contact }) => {
             <span className="text-blue-300 break-all">{contact.email.label}</span>
           </Tile>
 
+          <Tile
+            title={"Click ?"}
+            onClick={() => setCar((prev) => (prev + 1) % cats.length)}
+            className="sm:col-span-2 lg:col-span-2 lg:col-start-3 min-h-[132px]"
+          >
+            <div className="rounded-lg flex items-center justify-center overflow-hidden bg-black border border-white/10">
+              <img
+                src={cats[car].src}
+                alt={cats[car].alt}
+                className="w-max h-[120px] object-cover"
+                loading="lazy"
+              />
+            </div>
+          </Tile>
+
           <Tile title="GITHUB" icon="github" iconSize="h-9 w-9 lg:h-11 lg:w-11" href={contact.github.link} className="row-span-2">
             <div className="space-y-1">
               <div className="text-blue-300">{contact.github.label}</div>
@@ -121,20 +166,7 @@ const ContactSection = ({ contact }) => {
             <div className="text-xs text-yellow-500 mt-1">Double Click on the Arch Linux for a surprise!</div>
           </Tile>
 
-          <Tile
-            title={"Click ?"}
-            onClick={() => setShowNyan((prev) => !prev)}
-            className="sm:col-span-2 lg:col-span-2 lg:col-start-3 min-h-[132px]"
-          >
-            <div className="rounded-lg flex items-center justify-center overflow-hidden bg-black border border-white/10">
-              <img
-                src={showNyan ? "/neon-cat-cute.gif" : "/oiiai-cat-spinning-cat.gif"}
-                alt={showNyan ? "Nyan cat" : "Spinning cat"}
-                className="w-max h-[120px] object-cover"
-                loading="lazy"
-              />
-            </div>
-          </Tile>
+          
         </div>
       </WindowCard>
     </div>

@@ -119,7 +119,7 @@ const Bottombar = () => {
     };
 
     const handleArchClick = (event) => {
-      if (event.detail === 3) {
+      if (event.detail === 2) {
         window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank", "noopener,noreferrer");
         return;
       }
@@ -136,7 +136,7 @@ const Bottombar = () => {
               title="Arch Linux: Back to hero"
               aria-label="Arch Linux: Back to hero"
             >
-              <SiArchlinux className="h-4 w-4" />
+              <SiArchlinux className="h-6 w-6" fill="#fef08a" />
             </button>
               <span className="pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 whitespace-nowrap text-white h-max p-2 bg-[#1B1B27] font-mono text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 Arch Linux

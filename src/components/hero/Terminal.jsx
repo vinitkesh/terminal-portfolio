@@ -57,15 +57,16 @@ const Terminal = () => {
     const handleScroll = () => {
       const scrollPercentage =
         (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      const fadeStart = 0;
+      const fadeEnd = 20;
+      const progress = Math.min(Math.max((scrollPercentage - fadeStart) / (fadeEnd - fadeStart), 0), 1);
+      const opacity = 1 - progress;
 
-      if (scrollPercentage > 20) {
-        gsap.to(node, { y: '80vh', duration: 0.5, ease: 'power2.out' });
-      } else {
-        gsap.to(node, { y: '0vh', duration: 0.5, ease: 'power2.out' });
-      }
+      gsap.to(node, { opacity, duration: 0.25, ease: 'none', overwrite: 'auto' });
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
       ctx.revert();
