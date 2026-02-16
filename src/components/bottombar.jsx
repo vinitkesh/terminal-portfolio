@@ -129,10 +129,9 @@ const Bottombar = () => {
     return (
       <div className="w-full h-11 border-t border-[#1e2230] flex items-center justify-start bg-black/55 fixed bottom-0 left-0 z-[60] backdrop-blur-sm">
         <div className="relative w-full h-full flex items-center justify-start gap-0 overflow-x-auto overflow-y-clip">
-            <div className="relative group h-full shrink-0">
+            <div className="relative group h-full shrink-0" onClick={handleArchClick}>
               <button
                 type="button"
-                onClick={handleArchClick}
               className="h-full border-r border-[#2b3650] bg-[#111827] text-blue-200 transition hover:bg-[#16203a] hover:text-blue-100 font-mono text-[11px] font-semibold px-3 flex items-center gap-1.5"
               title="Arch Linux: Back to hero"
               aria-label="Arch Linux: Back to hero"
