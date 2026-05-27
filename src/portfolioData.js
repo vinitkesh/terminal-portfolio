@@ -122,98 +122,51 @@ export const skills = {
 
 export const experience = [
 
-    {
-        "role": "Project Intern",
-        "organization": "Oracle India ",
-        "logo": "/logos/oracle.png",
-        "duration": "May 2025 - Jul 2025",
-        "location": "Bangalore, India",
-        "highlights": [
-            "Developed MDS assessment integrations using Terra React components and Redux Toolkit state management to streamline long-term care facility data visualization.",
-            "Automated digitization of Care Area Assessment workflows for 20+ trigger types using a template-driven architecture, reducing manual configuration overhead.",
-            "Built custom UI components for Oracle Health within proprietary healthcare infrastructure."
-        ],
-        "tech": ["React", "TypeScript", "GraphQL", "Oracle Cloud", "Redux Toolkit"],
-        "hiddenSkills": ["JavaScript", "CSS", "Terra React", "Healthcare", "Data Visualization", "Template-driven Architecture"],
-        "type": "Internship"
-     },
-     {
-        "role": "SDE Consultant",
-        "organization": "Pentadots",
-        "logo": "/logos/intecsol.png",
-        "duration": "Jul 2025 - Jan 2026",
-        "location": "Remote",
-        "highlights": [
-            "Architected a scalable web platform for Doha Industrial and Engineering Services using Next.js and Strapi headless CMS with server-side rendering and incremental static regeneration.",
-            "Deployed a Three.js product visualization system achieving 60fps rendering performance and integrated Mux CDN for adaptive video streaming.",
-            "Reduced initial load time by 38% and built admin CMS workflows plus CI/CD deployment automation with automated testing and continuous deployment pipelines."
-        ],
-        "tech": ["Next.js", "Strapi", "Three.js", "Mux CDN", "CI/CD"],
-        "hiddenSkills": ["TypeScript", "React", "SSR", "ISR", "Automated Testing", "CMS Workflows"],
-        "type": "Consulting"
-     },
-     {
-        "role": "SDE Intern",
-        "organization": "Apvin Labs",
-        "logo": "/logos/intecsol.png",
-        "duration": "Dec 2024 - Feb 2025",
-        "location": "Remote",
-        "highlights": [
-            "Engineered a subscription management dashboard for a B2B telemedicine platform serving 14+ partner hospitals.",
-            "Implemented payment status tracking, patient assignment, and role-based access control using React, Redux, Node.js, and MongoDB.",
-            "Designed and integrated REST APIs for doctor subscriptions and patient records, enabling clinic admins to assign 150+ patients across multiple healthcare providers."
-        ],
-        "tech": ["React", "Redux", "Node.js", "MongoDB", "REST APIs"],
-        "hiddenSkills": ["Healthcare", "RBAC", "Subscription Management", "Express", "JavaScript"],
-        "type": "Internship"
-     },
-
-//   {
-//     "role": "Tech Head",
-//     "organization": "Literary & Debating Club, NIT Calicut",
-//     "logo": "/logos/lnd.svg",
-//     "duration": "Oct 2024 - Present",
-//     "location": "Campus",
-//     "highlights": [
-//       "Led technical initiatives for club platforms",
-//       "Built and maintained internal tools",
-//       "Collaborated with editorial and media teams"
-//     ],
-//     "tech": ["React", "Tailwind", "Git", "Netlify"],
-//     "type": "Leadership"
-//   },
-    {
-    "role": "Webmaster",
-    "organization": "Computer Science and Engineering Association, NIT Calicut",
-    "logo": "/logos/csea.png",
-    "duration": "Oct 2024 - Present",
-    "location": "Campus",
+  {
+    "role": "Project Intern",
+    "organization": "Oracle India ",
+    "logo": "/logos/oracle.png",
+    "duration": "May 2025 - Jul 2025",
+    "location": "Bangalore, India",
     "highlights": [
-        "Developed and maintained CSEA websites for NIT Calicut.",
-        "Supported association event operations, hackathons, technical events, and content workflows.",
-        "Coordinated with other departments for content integration and member-facing updates."
+      "Developed MDS assessment integrations using Terra React components and Redux Toolkit state management to streamline long-term care facility data visualization.",
+      "Automated digitization of Care Area Assessment workflows for 20+ trigger types using a template-driven architecture, reducing manual configuration overhead.",
+      "Built custom UI components for Oracle Health within proprietary healthcare infrastructure."
     ],
-    "tech": ["React", "Tailwind", "Netlify", "Next.js", "Strapi"],
-    "type": "Leadership"
+    "tech": ["React", "TypeScript", "GraphQL", "Oracle Cloud", "Redux Toolkit"],
+    "hiddenSkills": ["JavaScript", "CSS", "Terra React", "Healthcare", "Data Visualization", "Template-driven Architecture"],
+    "type": "Internship"
   },
   {
-    "role": "Student Intern",
-    "organization": "Intecsol",
+    "role": "SDE Consultant",
+    "organization": "Pentadots",
     "logo": "/logos/intecsol.png",
-    "duration": "Sep 2024 - Dec 2024",
+    "duration": "Jul 2025 - Jan 2026",
     "location": "Remote",
     "highlights": [
-      "Worked with LLM-based applications",
-      "Developed full-stack web features",
-      "Assisted in research-oriented tooling"
+      "Architected a scalable web platform for Doha Industrial and Engineering Services using Next.js and Strapi headless CMS with server-side rendering and incremental static regeneration.",
+      "Deployed a Three.js product visualization system achieving 60fps rendering performance and integrated Mux CDN for adaptive video streaming.",
+      "Reduced initial load time by 38% and built admin CMS workflows plus CI/CD deployment automation with automated testing and continuous deployment pipelines."
     ],
-    "tech": ["MERN", "LLMs", "PostgreSQL"],
+    "tech": ["Next.js", "Strapi", "Three.js", "Mux CDN", "CI/CD"],
+    "hiddenSkills": ["TypeScript", "React", "SSR", "ISR", "Automated Testing", "CMS Workflows"],
+    "type": "Consulting"
+  },
+  {
+    "role": "SDE Intern",
+    "organization": "Apvin Labs",
+    "logo": "/logos/intecsol.png",
+    "duration": "Dec 2024 - Feb 2025",
+    "location": "Remote",
+    "highlights": [
+      "Engineered a subscription management dashboard for a B2B telemedicine platform serving 14+ partner hospitals.",
+      "Implemented payment status tracking, patient assignment, and role-based access control using React, Redux, Node.js, and MongoDB.",
+      "Designed and integrated REST APIs for doctor subscriptions and patient records, enabling clinic admins to assign 150+ patients across multiple healthcare providers."
+    ],
+    "tech": ["React", "Redux", "Node.js", "MongoDB", "REST APIs"],
+    "hiddenSkills": ["Healthcare", "RBAC", "Subscription Management", "Express", "JavaScript"],
     "type": "Internship"
-  }
-
-];
-
-export const otherExperience = [
+  },
   {
     "role": "Frontend Head",
     "organization": "Ragam'26",
@@ -243,6 +196,38 @@ export const otherExperience = [
     "tech": ["Next.js", "React", "Performance Optimization"],
     "hiddenSkills": ["Leadership", "Lighthouse", "Frontend Architecture"],
     "type": "Leadership"
+  }
+
+];
+
+export const otherExperience = [
+  {
+    "role": "Webmaster",
+    "organization": "Computer Science and Engineering Association, NIT Calicut",
+    "logo": "/logos/csea.png",
+    "duration": "Oct 2024 - Present",
+    "location": "Campus",
+    "highlights": [
+      "Developed and maintained CSEA websites for NIT Calicut.",
+      "Supported association event operations, hackathons, technical events, and content workflows.",
+      "Coordinated with other departments for content integration and member-facing updates."
+    ],
+    "tech": ["React", "Tailwind", "Netlify", "Next.js", "Strapi"],
+    "type": "Leadership"
+  },
+  {
+    "role": "Student Intern",
+    "organization": "Intecsol",
+    "logo": "/logos/intecsol.png",
+    "duration": "Sep 2024 - Dec 2024",
+    "location": "Remote",
+    "highlights": [
+      "Worked with LLM-based applications",
+      "Developed full-stack web features",
+      "Assisted in research-oriented tooling"
+    ],
+    "tech": ["MERN", "LLMs", "PostgreSQL"],
+    "type": "Internship"
   },
   {
     "role": "Secretary",
