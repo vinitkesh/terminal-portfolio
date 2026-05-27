@@ -286,5 +286,5 @@ export const contact = {
     link: "/docs/Vinit_Keshri.pdf"
   },
   location: "Kerala, India",
-  availability: "Open to internships & collaborations"
+  availability: "Open to job opportunities & collaborations"
 };
